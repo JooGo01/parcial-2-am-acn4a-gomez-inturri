@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new HomeFragment());
 
         bnv.setBackground(null);
+        //cambio
         bnv.setOnItemSelectedListener(item -> {
             if(item.getItemId()==R.id.nav_home){
                 replaceFragment(new HomeFragment());
@@ -92,10 +93,8 @@ public class MainActivity extends AppCompatActivity {
         crearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 dialog.dismiss();
                 Toast.makeText(MainActivity.this,"Crear evento fue clickeado",Toast.LENGTH_SHORT).show();
-
             }
         });
 
