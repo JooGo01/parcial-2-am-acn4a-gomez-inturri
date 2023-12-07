@@ -1,8 +1,10 @@
 package com.example.for2pay;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -13,7 +15,9 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -24,12 +28,13 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
 
     FloatingActionButton fab;
     DrawerLayout drawerLayout;
     BottomNavigationView bnv;
+
+    NavigationView nv;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -38,9 +43,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bnv=findViewById(R.id.bottomNavigationView);
+        nv=findViewById(R.id.nav_view);
         fab=findViewById(R.id.fab);
         drawerLayout=findViewById(R.id.drawer_layout);
         NavigationView navigationView= findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
         Toolbar toolbar=findViewById(R.id.toolbar);
         //
         setSupportActionBar(toolbar);
@@ -55,8 +62,11 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new HomeFragment());
 
         bnv.setBackground(null);
+        //nv.setBackground(null);
+
         //cambio
         bnv.setOnItemSelectedListener(item -> {
+            Log.i("Item_nombre: ", String.valueOf(item.getItemId()));
             if(item.getItemId()==R.id.nav_home){
                 replaceFragment(new HomeFragment());
             }else if(item.getItemId()==R.id.nav_logout){
@@ -79,6 +89,35 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item){
+
+            if (item.getItemId() == R.id.nav_inicio) {
+                replaceFragment(new HomeFragment());
+            } else if (item.getItemId() == R.id.nav_configuracion) {
+                replaceFragment(new ConfiguracionFragment());
+            } else if (item.getItemId() ==R.id.nav_compartir) {
+                Toast.makeText(MainActivity.this,"Compartir fue clickeado",Toast.LENGTH_SHORT).show();
+            } else if (item.getItemId() ==R.id.nav_nosotros) {
+                Toast.makeText(MainActivity.this,"Sobre nosotros fue clickeado",Toast.LENGTH_SHORT).show();
+            }else if(item.getItemId() ==R.id.nav_cerrarsesion){
+                replaceFragment(new CerrarSesionFragment());
+            }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+
+        return true;
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }else{
+            super.onBackPressed();
+        }
     }
 
     private void showBottomDialog() {
