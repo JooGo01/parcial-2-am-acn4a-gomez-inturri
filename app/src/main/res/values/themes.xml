@@ -16,6 +16,10 @@
 
     <style name="Theme.For2Pay" parent="Base.Theme.For2Pay" />
 
+    <style name="SplashTheme">
+        <item name="android:windowBackground">@drawable/splashscreen</item>
+    </style>
+
     <style name="DialogAnimation">
         <item name="android:windowEnterTransition">@anim/slide_in</item>
         <item name="android:windowExitAnimation">@anim/slide_out</item>
