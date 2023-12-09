@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1035588895680",
+    "project_id": "for2pay",
+    "storage_bucket": "for2pay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035588895680:android:ca963b2833f7f2a09b7e25",
+        "android_client_info": {
+          "package_name": "com.example.for2pay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1AnAFXOFTx6aD3mCktV3gFQrhdS4lyWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
