@@ -57,6 +57,13 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        regButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
     }
 
     private void fncInicioSesion(String p_email, String p_pwd){

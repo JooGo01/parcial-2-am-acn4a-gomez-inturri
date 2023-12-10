@@ -1,9 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".RegisterActivity">
 
+<include layout="@layout/login_header"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:layout_alignParentTop="true" />
+
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="30dp"
+    app:cardCornerRadius="30dp"
+    app:cardElevation="20dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <LinearLayout
+        android:id="@+id/linear_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registro"
+            android:id="@+id/loginTextView"
+            android:textSize="24dp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textColor="@color/color_base"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Correo"
+            android:layout_marginTop="40dp"
+            android:id="@+id/correo_registro"></EditText>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Contraseña"
+            app:passwordToggleEnabled="true"
+            android:layout_marginTop="40dp"
+            android:inputType="textPassword"
+            android:id="@+id/contrasenia_registro"></EditText>
+
+        <Button
+            android:id="@+id/btn_registrar_usuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/color_secundario"
+            android:text="Registrarse" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
