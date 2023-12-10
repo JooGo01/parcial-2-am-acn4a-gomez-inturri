@@ -27,7 +27,9 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/frame_layout"/>
+            android:id="@+id/frame_layout">
+
+        </FrameLayout>
 
     </LinearLayout>
 
@@ -45,34 +47,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Contenido principal de tu actividad o fragmento -->
+
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/white"
-            app:fabCradleMargin="10dp"
-            app:fabCradleRoundedCornerRadius="50dp">
+            app:fabCradleMargin="20dp"
+            app:fabCradleRoundedCornerRadius="20dp"
+            app:fabCradleVerticalOffset="10dp"
+            app:layout_anchorGravity="center">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavigationView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
                 android:background="@android:color/transparent"
                 app:labelVisibilityMode="labeled"
                 app:menu="@menu/bottom_menu" />
-
         </com.google.android.material.bottomappbar.BottomAppBar>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/white"
             android:src="@drawable/agregar"
-            app:layout_anchor="@id/bottomAppBar"
+            app:layout_anchor="@+id/bottomAppBar"
+            app:layout_anchorGravity="center"
             app:maxImageSize="40dp"
-            android:id="@+id/fab"
             app:tint="@color/color_base" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
