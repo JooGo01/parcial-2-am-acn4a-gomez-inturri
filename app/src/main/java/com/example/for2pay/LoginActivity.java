@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
         setTheme(R.style.Base_Theme_For2Pay);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
