@@ -3,7 +3,9 @@ package com.example.for2pay;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +27,8 @@ public class LoginActivity extends AppCompatActivity {
     Button regButton;
 
     FirebaseAuth mAuth;
+
+    SharedPreferences preferencias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,16 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
+
+        preferencias = getSharedPreferences("sesion", Context.MODE_PRIVATE);
+        if(preferencias.getBoolean("estado_usuario", false)==true){
+            // iniciamos sesion automaticamente
+            String sesionUser = preferencias.getString("sesion_mail", null);
+            correo.setText(sesionUser);
+            String sesionPwd = preferencias.getString("sesion_pwd",null);
+            contrasenia.setText(sesionPwd);
+            fncInicioSesion(sesionUser, sesionPwd);
+        }
     }
 
     private void fncInicioSesion(String p_email, String p_pwd){
@@ -72,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     finish();
+                    guardarSesion(p_email,p_pwd);
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     Toast.makeText(LoginActivity.this, "Inicio sesion con exito", Toast.LENGTH_SHORT).show();
                 }else{
@@ -84,6 +99,17 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Error al iniciar sesion", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void guardarSesion(String p_email, String p_pwd){
+        //guaradamos los parametros en caso de que el inicio haya sido correcto
+        preferencias = getSharedPreferences("sesion", Context.MODE_PRIVATE);
+        boolean estado=true;
+        SharedPreferences.Editor editor = preferencias.edit();
+        editor.putBoolean("estado_usuario", estado);
+        editor.putString("sesion_mail", p_email);
+        editor.putString("sesion_pwd", p_pwd);
+        editor.commit();
     }
 
 }
