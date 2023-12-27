@@ -28,14 +28,13 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     FloatingActionButton fab;
     DrawerLayout drawerLayout;
     BottomNavigationView bnv;
 
     NavigationView nv;
-
     @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,20 +42,28 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         setContentView(R.layout.activity_main);
 
         bnv=findViewById(R.id.bottomNavigationView);
-        nv=findViewById(R.id.nav_view);
+        nv=(NavigationView) findViewById(R.id.nav_view);
+        //nv.setNavigationItemSelectedListener(this);
+        nv.setNavigationItemSelectedListener(this);
+
+        //ELEMENTAL ESTA LINEA PARA QUE FUNCIONE EL NAVIGATION VIEW, SI NO NO TOMA EL CLICK DE LOS ELEMENTOS
+        nv.bringToFront();
+        //
+
         fab=findViewById(R.id.fab);
         drawerLayout=findViewById(R.id.drawer_layout);
-        NavigationView navigationView= findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+
         Toolbar toolbar=findViewById(R.id.toolbar);
         //
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
         if(savedInstanceState==null){
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new HomeFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_home);
+            nv.setCheckedItem(R.id.nav_home);
+            nv.setCheckedItem(R.id.nav_inicio);
         }
 
         replaceFragment(new HomeFragment());
@@ -84,31 +91,31 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             }
         });
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        //Toast.makeText(MainActivity.this,item.getItemId(),Toast.LENGTH_SHORT).show();
+
+        if (item.getItemId() == R.id.nav_inicio) {
+            replaceFragment(new HomeFragment());
+        } else if (item.getItemId() == R.id.nav_configuracion) {
+            replaceFragment(new ConfiguracionFragment());
+        } else if (item.getItemId() ==R.id.nav_compartir) {
+            Toast.makeText(MainActivity.this,"Compartir fue clickeado",Toast.LENGTH_SHORT).show();
+        } else if (item.getItemId() ==R.id.nav_nosotros) {
+            Toast.makeText(MainActivity.this,"Sobre nosotros fue clickeado",Toast.LENGTH_SHORT).show();
+        }else if(item.getItemId() ==R.id.nav_cerrarsesion){
+            replaceFragment(new CerrarSesionFragment());
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
     private  void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item){
-
-            if (item.getItemId() == R.id.nav_inicio) {
-                replaceFragment(new HomeFragment());
-            } else if (item.getItemId() == R.id.nav_configuracion) {
-                replaceFragment(new ConfiguracionFragment());
-            } else if (item.getItemId() ==R.id.nav_compartir) {
-                Toast.makeText(MainActivity.this,"Compartir fue clickeado",Toast.LENGTH_SHORT).show();
-            } else if (item.getItemId() ==R.id.nav_nosotros) {
-                Toast.makeText(MainActivity.this,"Sobre nosotros fue clickeado",Toast.LENGTH_SHORT).show();
-            }else if(item.getItemId() ==R.id.nav_cerrarsesion){
-                replaceFragment(new CerrarSesionFragment());
-            }
-
-        drawerLayout.closeDrawer(GravityCompat.START);
-
-        return true;
     }
 
     @Override
