@@ -5,4 +5,5 @@
     <string name="open_nav">For2PayOpen</string>
     <string name="close_nav">For2PayClose</string>
     <string name="texto_subrayado"><u>Te olvidaste la contraseña? Cambiala aca</u></string>
+    <string name="title_activity_agregar">activity_agregar</string>
 </resources>
