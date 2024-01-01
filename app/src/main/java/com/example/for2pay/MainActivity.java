@@ -149,7 +149,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Toast.makeText(MainActivity.this,"Crear evento fue clickeado",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this,"Crear evento fue clickeado",Toast.LENGTH_SHORT).show();
+                replaceFragment(new AgregarFragment());
+
             }
         });
 
