@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1035588895680",
+    "firebase_url": "https://for2pay-default-rtdb.firebaseio.com",
     "project_id": "for2pay",
     "storage_bucket": "for2pay.appspot.com"
   },
