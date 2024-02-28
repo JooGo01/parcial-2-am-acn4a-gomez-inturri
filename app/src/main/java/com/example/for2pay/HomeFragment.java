@@ -24,6 +24,7 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
     public HomeFragment() {
         // Required empty public constructor
     }
