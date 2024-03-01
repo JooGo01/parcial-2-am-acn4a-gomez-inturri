@@ -3,15 +3,15 @@ package com.example.for2pay.model;
 public class Event {
     Double precio;
     String nombre, descripcion;
-    int dia;
+    Long dia_pago;
 
-public Event(){}
+    public Event(){}
 
-    public Event(Double precio, String nombre, String descripcion, int dia) {
+    public Event(Double precio, String nombre, String descripcion, Long dia_pago) {
         this.precio = precio;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.dia = dia;
+        this.dia_pago = dia_pago;
     }
 
     public Double getPrecio() {
@@ -38,11 +38,11 @@ public Event(){}
         this.descripcion = descripcion;
     }
 
-    public int getDia() {
-        return dia;
+    public Long getDia_pago() {
+        return dia_pago;
     }
 
-    public void setDia(int dia) {
-        this.dia = dia;
+    public void setDia_pago(Long dia_pago) {
+        this.dia_pago = dia_pago;
     }
 }

@@ -51,7 +51,9 @@ android {
 }
 
 dependencies {
-
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    // For control over item selection of both touch and mouse driven selection
+    implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -76,11 +78,6 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
     implementation("com.google.firebase:firebase-analytics")
-
-
     implementation ("com.firebaseui:firebase-ui-firestore:4.3.2")
-
     implementation ("com.firebaseui:firebase-ui-firestore:8.0.1")
-
-
 }

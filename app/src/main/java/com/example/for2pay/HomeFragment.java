@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.example.for2pay.adapter.EventAdapter;
 import com.example.for2pay.model.Event;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -64,23 +66,13 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        mFirestore = FirebaseFirestore.getInstance();
-        mRecycler = findViewById(R.id.recyclerViewSingle);
-        mRecycler.setLayoutManager(new LinearLayoutManager(this));
-        Query query = mFirestore.collection("event");
-
-        FirestoreRecyclerOptions<Event> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Event>().setQuery(query, Event.class).build;
-
-        mAdapter = new EventAdapter(FirestoreRecyclerOptions);
-        mAdapter.notifyDataSetChanged();
-        mRecycler.setAdapter(mAdapter);
     }
 
 
     @Override
     public void onStart() {
         super.onStart();
-        mAdapter.starListening();
+        mAdapter.startListening();
     }
 
     @Override
@@ -93,6 +85,20 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        //return inflater.inflate(R.layout.fragment_home, container, false);
+        FirebaseAuth mAuth;
+        mAuth= FirebaseAuth.getInstance();
+        String id = mAuth.getCurrentUser().getUid();
+        View view_fragment=inflater.inflate(R.layout.fragment_home, container, false);
+        mFirestore = FirebaseFirestore.getInstance();
+        mRecycler = view_fragment.findViewById(R.id.recyclerViewSingle);
+        mRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+        Query query = mFirestore.collection("evento").whereEqualTo("id_usuario",id).whereEqualTo("estado_baja",false);
+        FirestoreRecyclerOptions<Event> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Event>().setQuery(query, Event.class).build();
+        mAdapter = new EventAdapter(firestoreRecyclerOptions);
+        mAdapter.notifyDataSetChanged();
+        mRecycler.setAdapter(mAdapter);
+
+        return view_fragment;
     }
 }

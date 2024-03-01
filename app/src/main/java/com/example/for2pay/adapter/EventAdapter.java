@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.annotation.NonNull;
 
 import com.example.for2pay.R;
-import com.firebase.ui.firestone.FirestoneRecyclerOptions;
 import com.example.for2pay.model.Event;
-import com.firebase.ui.firestone.FirestoneRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.ViewHolder> {
     /*
@@ -33,8 +32,8 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
     protected void onBindViewHolder(@NonNull ViewHolder viewHolder, int i, @NonNull Event event ) {
         viewHolder.nombre.setText(event.getNombre());
         viewHolder.descripcion.setText(event.getDescripcion());
-        viewHolder.dia.setText(event.getDia());
-        viewHolder.precio.setText(event.getPrecio());
+        viewHolder.dia_pago.setText(event.getDia_pago().toString());
+        viewHolder.precio.setText(event.getPrecio().toString());
     }
 
     @NonNull
@@ -46,14 +45,13 @@ public class EventAdapter extends FirestoreRecyclerAdapter<Event, EventAdapter.V
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView nombre, descripcion, dia, precio;
+        TextView nombre, descripcion, dia_pago, precio;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nombre = itemView.findViewById(R.id.nombre);
             descripcion = itemView.findViewById(R.id.descripcion);
-            dia = itemView.findViewById(R.id.dia);
+            dia_pago = itemView.findViewById(R.id.dia);
             precio = itemView.findViewById(R.id.precio);
-
         }
     }
 
