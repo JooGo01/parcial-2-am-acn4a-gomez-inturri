@@ -7,11 +7,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -81,6 +84,37 @@ public class AgregarFragment extends Fragment {
         et_descripcion=view.findViewById(R.id.txt_descripcion);
         et_precio=view.findViewById(R.id.txt_precio);
         et_dia=view.findViewById(R.id.txt_dia);
+        TextView tv;
+        tv=view.findViewById(R.id.textView10);
+
+        et_dia.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No se necesita implementar
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // No se necesita implementar
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Verifica si el texto ingresado está dentro del rango deseado
+                if (!s.toString().isEmpty()) {
+                    int value = Integer.parseInt(s.toString());
+                    if (value < 1 || value > 31) {
+                        // Si el valor está fuera del rango, muestra un mensaje de error
+                        et_dia.setError("Dia de Pago (Aproximado) - ERROR - El valor debe estar entre 1 y 31");
+                        agregar_evento.setEnabled(false);
+                    } else {
+                        // El valor está dentro del rango, borra el mensaje de error si existe
+                        et_dia.setError(null);
+                        agregar_evento.setEnabled(true);
+                    }
+                }
+            }
+        });
         agregar_evento.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

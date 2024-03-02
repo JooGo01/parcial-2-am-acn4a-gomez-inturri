@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
     android:backgroundTint="#FAF4F4"
-    app:cardCornerRadius="20dp">
+    android:layout_margin="10dp"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="10dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -23,7 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nombre"
-                android:textSize="20dp"
+                android:textSize="24dp"
+                android:textColor="@color/color_base"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -37,7 +38,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Descripcion"
-                    android:textSize="16dp" />
+                    android:textColor="@color/color_secundario"
+                    android:textSize="22dp" />
 
                 <TextView
                     android:id="@+id/precio"
@@ -45,7 +47,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Precio"
-                    android:textSize="16dp" />
+                    android:textColor="@color/color_secundario"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/dia"
@@ -53,9 +56,31 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Dia"
-                    android:textSize="16dp" />
+                    android:textColor="@color/color_secundario"
+                    android:textSize="18dp" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/btn_visualizar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/color_correcto"
+                    android:text="Ver"
+                    app:icon="@drawable/ic_visualizar" />
+
+                <Button
+                    android:id="@+id/btn_eliminar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/color_warning"
+                    android:text="Eliminar"
+                    app:icon="@drawable/borrar" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

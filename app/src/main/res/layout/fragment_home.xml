@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -15,25 +16,17 @@
         <TextView
             android:id="@+id/tvhome"
             android:layout_width="match_parent"
-            android:layout_height="136dp"
+            android:layout_height="100dp"
             android:gravity="center"
-            android:text="Home"
+            android:text="Bienvenido!"
             android:textColor="@color/color_secundario"
             android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/recordatorio"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="Acá aparecerá los recordatorios"
-            android:textColor="@color/color_secundario"
-            android:textSize="20dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewSingle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="90dp"/>
 
     </LinearLayout>
 
